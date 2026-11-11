@@ -31,6 +31,18 @@
         #172617;
     }
 
+    .map-backdrop {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 750px;
+      height: 1250px;
+      background: center / 100% 100% no-repeat url("map-pine-rush-overscan.png?v=2");
+      image-rendering: pixelated;
+      pointer-events: none;
+      transform-origin: center;
+    }
+
     .game-stage {
       position: absolute;
       top: 50%;
@@ -153,210 +165,83 @@
       -webkit-user-select: none;
     }
 
-    .steering-slider,
-    .pedals {
+    .drive-joystick {
+      --stick-x: 0px;
+      --stick-y: 0px;
       position: absolute;
       left: 18px;
-      bottom: 28px;
-    }
-
-    .steering-slider {
-      --wheel-x: 0px;
-      --wheel-turn: 0deg;
-      width: 166px;
-      height: 102px;
-      border: 1px solid rgba(249, 223, 114, 0.68);
-      border-radius: 22px;
-      background: rgba(20, 35, 29, 0.92);
-      box-shadow: 0 5px 0 rgba(12, 23, 18, 0.92), 0 8px 18px rgba(0, 0, 0, 0.52);
-      pointer-events: auto;
-      touch-action: none;
-    }
-
-    .steering-track {
-      position: absolute;
-      right: 13px;
-      bottom: 21px;
-      left: 13px;
-      height: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 999px;
-      background: #17231e;
-      box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.7);
-    }
-
-    .steering-track::after {
-      position: absolute;
-      top: -5px;
-      left: 50%;
-      width: 2px;
-      height: 16px;
-      background: #ffe263;
-      content: "";
-      transform: translateX(-50%);
-    }
-
-    .steering-wheel {
-      position: absolute;
-      top: 38px;
-      left: 50%;
-      width: 64px;
-      height: 64px;
-      border: 8px solid #e94b35;
+      bottom: 22px;
+      width: 172px;
+      height: 172px;
+      border: 1px solid rgba(249, 223, 114, 0.48);
       border-radius: 50%;
-      background: rgba(20, 28, 24, 0.88);
-      box-shadow: inset 0 0 0 2px #7f2118, 0 4px 0 #681b14, 0 6px 9px rgba(0, 0, 0, 0.42);
-      transform: translate(calc(-50% + var(--wheel-x)), -50%) rotate(var(--wheel-turn));
-      transition: transform 100ms ease-out;
-    }
-
-    .steering-slider.dragging .steering-wheel {
-      transition: none;
-    }
-
-    .steering-wheel::before,
-    .steering-wheel::after {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 43px;
-      height: 7px;
-      border-radius: 4px;
-      background: #f9df72;
-      content: "";
-      transform: translate(-50%, -50%);
-    }
-
-    .steering-wheel::after {
-      transform: translate(-50%, -50%) rotate(90deg);
-    }
-
-    .steering-hub {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      z-index: 1;
-      width: 17px;
-      height: 17px;
-      border: 3px solid #fff0a5;
-      border-radius: 50%;
-      background: #9f2b1f;
-      transform: translate(-50%, -50%);
-    }
-
-    .steering-label {
-      position: absolute;
-      bottom: 3px;
-      color: rgba(255, 255, 255, 0.88);
-      font: 800 9px/1 "Arial Black", sans-serif;
-    }
-
-    .steering-label.left { left: 11px; }
-    .steering-label.right { right: 11px; }
-
-    .pedals {
-      right: 98px;
-      left: auto;
-      display: flex;
-      align-items: flex-end;
-      gap: 8px;
-    }
-
-    .drive-button {
-      width: 66px;
-      height: 90px;
-      border: 2px solid rgba(249, 223, 114, 0.58);
-      border-radius: 18px;
-      background: linear-gradient(145deg, #e94b35, #a9291d);
-      box-shadow: 0 4px 0 #681b14, 0 6px 12px rgba(0, 0, 0, 0.42);
-      color: #fff7d0;
-      font: 900 27px/1 "Arial Black", sans-serif;
-      pointer-events: auto;
-      touch-action: none;
-    }
-
-    .pedal {
-      position: relative;
-      overflow: hidden;
-      border: 2px solid rgba(174, 184, 178, 0.68);
-      border-radius: 10px 10px 16px 16px;
       background:
-        linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, 0.18) 48%, transparent 55%),
-        linear-gradient(145deg, #78847f, #303b36 68%, #1b2420);
-      box-shadow:
-        inset 2px 2px 0 rgba(255, 255, 255, 0.2),
-        inset -3px -4px 0 rgba(0, 0, 0, 0.28),
-        0 6px 0 #141c18,
-        0 9px 13px rgba(0, 0, 0, 0.48);
-      font-size: 30px;
-      letter-spacing: 0.06em;
-      text-shadow: 0 2px 1px rgba(0, 0, 0, 0.72);
+        radial-gradient(circle, transparent 0 28%, rgba(255,255,255,0.08) 29% 30%, transparent 31%),
+        radial-gradient(circle at 45% 42%, rgba(57, 82, 68, 0.96), rgba(14, 27, 21, 0.96) 72%);
+      box-shadow: inset 0 0 0 8px rgba(5, 12, 9, 0.24), 0 6px 0 rgba(7, 16, 12, 0.86), 0 10px 22px rgba(0,0,0,0.48);
+      pointer-events: auto;
+      touch-action: none;
     }
 
-    .pedal::before {
+    .drive-joystick::before,
+    .drive-joystick::after {
       position: absolute;
-      inset: 8px;
-      border: 1px solid rgba(230, 238, 233, 0.32);
-      border-radius: 5px 5px 11px 11px;
-      background: repeating-linear-gradient(
-        0deg,
-        rgba(10, 17, 14, 0.72) 0 4px,
-        rgba(168, 179, 173, 0.28) 4px 7px,
-        transparent 7px 14px
-      );
-      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.65);
       content: "";
+      background: rgba(255, 226, 99, 0.24);
     }
 
-    .pedal::after {
+    .drive-joystick::before { top: 17px; bottom: 17px; left: 50%; width: 1px; }
+    .drive-joystick::after { top: 50%; right: 17px; left: 17px; height: 1px; }
+
+    .joystick-arrow {
       position: absolute;
-      right: 12px;
-      bottom: 5px;
-      left: 12px;
-      height: 5px;
-      border-radius: 4px;
-      background: #101713;
-      box-shadow: 0 2px 0 rgba(196, 207, 201, 0.22);
-      content: "";
+      color: rgba(255, 247, 208, 0.58);
+      font: 900 14px/1 "Arial Black", sans-serif;
+      pointer-events: none;
     }
 
-    .pedal span {
-      position: relative;
+    .joystick-arrow.up { top: 8px; left: 50%; transform: translateX(-50%); }
+    .joystick-arrow.left { top: 50%; left: 10px; transform: translateY(-50%); }
+    .joystick-arrow.right { top: 50%; right: 10px; transform: translateY(-50%); }
+
+    .joystick-stick {
+      position: absolute;
+      top: 50%;
+      left: 50%;
       z-index: 1;
+      width: 70px;
+      height: 70px;
+      border: 5px solid #f9df72;
+      border-radius: 50%;
+      background: radial-gradient(circle at 38% 30%, #ef6a4e, #b42e20 68%, #6c1b14);
+      box-shadow: inset 0 0 0 3px rgba(255,255,255,0.13), 0 5px 0 #641811, 0 8px 13px rgba(0,0,0,0.5);
+      transform: translate(calc(-50% + var(--stick-x)), calc(-50% + var(--stick-y)));
+      transition: transform 90ms ease-out;
+      pointer-events: none;
     }
 
-    .gas-pedal {
-      width: 76px;
-      height: 116px;
-      border-color: rgba(155, 198, 164, 0.64);
-      color: #e7ffe8;
-    }
+    .drive-joystick.dragging .joystick-stick { transition: none; }
 
-    .brake-pedal {
-      width: 68px;
-      height: 102px;
-      border-color: rgba(196, 154, 141, 0.64);
-      color: #ffe0d6;
-    }
-
-    .drive-button.active {
-      transform: translateY(5px);
-      box-shadow: 0 0 0 #681b14, 0 2px 7px rgba(0, 0, 0, 0.4);
-      filter: brightness(1.35);
+    .joystick-stick::after {
+      position: absolute;
+      inset: 22px;
+      border: 2px solid rgba(255,247,208,0.82);
+      border-radius: 50%;
+      content: "";
     }
 
     .nitro-button {
       position: absolute;
-      right: 12px;
-      bottom: 42px;
-      width: 72px;
-      height: 72px;
+      right: 28px;
+      bottom: 62px;
+      width: 92px;
+      height: 92px;
       border: 2px solid rgba(189, 238, 255, 0.68);
       border-radius: 50%;
       background: radial-gradient(circle at 35% 28%, #56dbff, #087cad 62%, #03445f);
       box-shadow: 0 6px 0 #032f43, 0 9px 18px rgba(0, 0, 0, 0.45);
       color: white;
-      font: 900 12px/1 "Arial Black", sans-serif;
+      font: 900 14px/1 "Arial Black", sans-serif;
       letter-spacing: 0.04em;
       text-shadow: 0 2px 0 #03445f;
       pointer-events: auto;
@@ -384,10 +269,11 @@
   </style>
 </head>
 <body>
+  <div class="map-backdrop" id="mapBackdrop" aria-hidden="true"></div>
   <div class="game-stage racing" id="gameStage">
     <canvas id="game" aria-label="Playable off-road racing game"></canvas>
     <div class="title">Retro Rally</div>
-    <div class="hint">Arrows drive · Space nitro · R restart · P pause</div>
+    <div class="hint">Left / Right steer · Up accelerate · Space nitro · R restart · P pause</div>
     <button class="sound-button" id="soundButton" type="button" aria-label="Mute sound" title="Mute sound">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M3 9v6h4l5 4V5L7 9H3Z" fill="currentColor"/>
@@ -396,15 +282,11 @@
       </svg>
     </button>
     <div class="mobile-controls" aria-label="Driving controls">
-      <div class="steering-slider" id="steeringSlider" role="slider" aria-label="Steering" aria-valuemin="-100" aria-valuemax="100" aria-valuenow="0" tabindex="0">
-        <div class="steering-track"></div>
-        <div class="steering-wheel" id="steeringWheel"><span class="steering-hub"></span></div>
-        <span class="steering-label left">L</span>
-        <span class="steering-label right">R</span>
-      </div>
-      <div class="pedals" role="group" aria-label="Pedals">
-        <button class="drive-button pedal gas-pedal" id="gasPedal" type="button" aria-label="Accelerate"><span>+</span></button>
-        <button class="drive-button pedal brake-pedal" id="brakePedal" type="button" aria-label="Decelerate"><span>−</span></button>
+      <div class="drive-joystick" id="driveJoystick" role="group" aria-label="Steering and acceleration joystick">
+        <span class="joystick-arrow up">▲</span>
+        <span class="joystick-arrow left">◀</span>
+        <span class="joystick-arrow right">▶</span>
+        <div class="joystick-stick"></div>
       </div>
       <button class="nitro-button" id="nitroButton" type="button" aria-label="Hold for nitro">NITRO</button>
     </div>
@@ -415,13 +297,12 @@
       "use strict";
 
       const stage = document.getElementById("gameStage");
+      const mapBackdrop = document.getElementById("mapBackdrop");
       const canvas = document.getElementById("game");
       const ctx = canvas.getContext("2d");
       const pondCanvas = document.createElement("canvas");
       const pondCtx = pondCanvas.getContext("2d");
-      const steeringSlider = document.getElementById("steeringSlider");
-      const gasPedal = document.getElementById("gasPedal");
-      const brakePedal = document.getElementById("brakePedal");
+      const driveJoystick = document.getElementById("driveJoystick");
       const nitroButton = document.getElementById("nitroButton");
       const soundButton = document.getElementById("soundButton");
       const TAU = Math.PI * 2;
@@ -453,10 +334,10 @@
       const CAR_COLORS = ["#e94b35", "#3487e8", "#f3c531", "#38a95b"];
       const CAR_NAMES = ["Player", "Bluebird", "Wasp", "Clover"];
       const CAR_SPECS = [
-        { maxSpeed: 145, acceleration: 68, handling: 0.92 },
-        { maxSpeed: 155, acceleration: 78, handling: 0.96 },
-        { maxSpeed: 162, acceleration: 71, handling: 0.82 },
-        { maxSpeed: 153, acceleration: 82, handling: 1.03 },
+        { maxSpeed: 174, acceleration: 68, handling: 0.92 },
+        { maxSpeed: 186, acceleration: 78, handling: 0.96 },
+        { maxSpeed: 194.4, acceleration: 71, handling: 0.82 },
+        { maxSpeed: 183.6, acceleration: 82, handling: 1.03 },
       ];
       const AI_RACE_PACE = 0.95;
       const AI_CATCHUP_LIMIT = 0.03;
@@ -490,9 +371,8 @@
       let scoreLogoRect = null;
       const keys = new Set();
       const input = { steer: 0, throttle: 0, nitro: false };
-      const touchControls = { gas: false, brake: false };
-      let touchSteer = 0;
-      let steeringPointer = null;
+      const joystickInput = { steer: 0, throttle: 0 };
+      let joystickPointer = null;
       let nitroPointer = null;
       let audioContext = null;
       let masterGain = null;
@@ -547,6 +427,7 @@
           name: "GREEN RUN",
           tag: "ORIGINAL • MUD",
           imageSrc: "map-pine-rush-pixel.png?v=2",
+          backdropSrc: "map-pine-rush-overscan.png?v=2",
           controlPoints: PINE_RUSH_POINTS,
           bakedTrack: true,
           usableHeight: 815,
@@ -569,6 +450,7 @@
           name: "JUNGLE JOLT",
           tag: "TECHNICAL • HARD",
           imageSrc: "map-jungle-jolt-art.png?v=1",
+          backdropSrc: "map-jungle-jolt-overscan.png?v=2",
           controlPoints: JUNGLE_JOLT_POINTS,
           bakedTrack: true,
           trackWidth: 60,
@@ -593,6 +475,7 @@
           name: "DUNE DASH",
           tag: "VERY FAST • CHOKE",
           imageSrc: "map-dune-dash-baked.png?v=13",
+          backdropSrc: "map-dune-dash-overscan.png?v=2",
           controlPoints: DUNE_DASH_POINTS,
           bakedTrack: true,
           trackWidth: 70,
@@ -622,6 +505,7 @@
           name: "FROSTBITE",
           tag: "SLIPPERY • HARD",
           imageSrc: "map-frostbite-baked.png?v=13",
+          backdropSrc: "map-frostbite-overscan.png?v=2",
           controlPoints: FROSTBITE_POINTS,
           bakedTrack: true,
           trackWidth: 64,
@@ -1163,6 +1047,7 @@
         dpr = Math.min(window.devicePixelRatio || 1, 2);
         const scale = Math.min(window.innerWidth / GAME_WIDTH, window.innerHeight / GAME_HEIGHT);
         stage.style.transform = `translate(-50%, -50%) scale(${scale})`;
+        mapBackdrop.style.transform = `translate(-50%, -50%) scale(${scale})`;
         canvas.width = Math.round(viewWidth * dpr);
         canvas.height = Math.round(viewHeight * dpr);
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -1346,6 +1231,7 @@
             x: startPosition.x,
             y: startPosition.y,
             headingAngle: startPosition.angle,
+            motionAngle: startPosition.angle,
             visualAngle: startPosition.angle,
           };
         });
@@ -1355,6 +1241,7 @@
         if (index < 0 || index >= MAPS.length) return;
         currentMapIndex = index;
         activeMapImage = mapImages[index];
+        mapBackdrop.style.backgroundImage = `url("${MAPS[index].backdropSrc}")`;
         mapReady = activeMapImage.complete && activeMapImage.naturalWidth > 0;
         rebuildTrack();
         resetRace();
@@ -1411,7 +1298,7 @@
 
       function updatePlayer(car, dt) {
         const steer = Math.max(-1, Math.min(1, input.steer));
-        const throttle = Math.max(-1, Math.min(1, input.throttle));
+        const throttle = Math.max(0, Math.min(1, input.throttle));
         const nitroBeforeUpdate = car.nitro;
         car.fireNitroTimer = Math.max(0, car.fireNitroTimer - dt);
         car.fireNitroActive = car.fireNitroTimer > 0;
@@ -1448,16 +1335,13 @@
         const boostMultiplier = car.fireNitroActive ? 1.86 : usingNitro ? 1.48 : 1;
         const topSpeed = car.maxSpeed * MAPS[currentMapIndex].speedScale * surfaceLimit * boostMultiplier;
         let targetSpeed = car.speed;
-        if (car.fireNitroActive && throttle >= -0.05) {
+        if (car.fireNitroActive) {
           targetSpeed = Math.max(car.speed, topSpeed * Math.max(0.78, throttle));
         } else if (throttle > 0.05) targetSpeed = topSpeed * throttle;
-        else if (throttle < -0.05) targetSpeed = 0;
         else targetSpeed = Math.max(0, car.speed - (isOffRoad ? 44 : 24) * dt);
         if (car.airborne) targetSpeed = Math.max(targetSpeed, car.speed);
 
-        const rate = throttle < -0.05
-          ? 132
-          : car.acceleration * (car.fireNitroActive ? 3.15 : usingNitro ? 2.35 : 1);
+        const rate = car.acceleration * (car.fireNitroActive ? 3.15 : usingNitro ? 2.35 : 1);
         const speedDelta = targetSpeed - car.speed;
         car.speed += Math.sign(speedDelta) * Math.min(Math.abs(speedDelta), rate * dt);
 
@@ -1466,8 +1350,19 @@
           2.25 * steeringGrip * (0.72 + car.handling * 0.28) *
           (car.airborne ? 0.3 : 1) * (car.onIce ? 0.34 : 1);
         car.headingAngle += steer * turnRate * dt;
-        car.x += Math.cos(car.headingAngle) * car.speed * dt;
-        car.y += Math.sin(car.headingAngle) * car.speed * dt;
+
+        // The body turns first while momentum catches up, creating stable, bounded oversteer.
+        const speedRatio = Math.min(1, car.speed / Math.max(1, car.maxSpeed));
+        const boostDrift = car.fireNitroActive ? 0.34 : usingNitro ? 0.22 : 0;
+        const driftDemand = Math.abs(steer) * speedRatio * (0.44 + throttle * 0.42 + boostDrift);
+        const motionGrip = (car.onIce ? 0.72 : 4.8) * (1 - Math.min(0.72, driftDemand));
+        const motionBlend = 1 - Math.exp(-motionGrip * dt);
+        car.motionAngle += shortestAngleDifference(car.headingAngle, car.motionAngle) * motionBlend;
+        const maxSlip = car.onIce ? 0.58 : car.fireNitroActive ? 0.46 : usingNitro ? 0.38 : 0.3;
+        const slip = shortestAngleDifference(car.headingAngle, car.motionAngle);
+        if (Math.abs(slip) > maxSlip) car.motionAngle = car.headingAngle - Math.sign(slip) * maxSlip;
+        car.x += Math.cos(car.motionAngle) * car.speed * dt;
+        car.y += Math.sin(car.motionAngle) * car.speed * dt;
         syncAndContainPlayer(car, dt);
         car.bump = Math.max(0, car.bump - dt * 5);
       }
@@ -1767,6 +1662,7 @@
         const alignmentRate = car.barrierContact ? 6.2 : 7.5;
         const alignment = 1 - Math.exp(-alignmentRate * dt);
         car.headingAngle += tangentTurn * alignment * (0.8 + outwardRatio * 0.2);
+        car.motionAngle += shortestAngleDifference(car.headingAngle, car.motionAngle) * alignment;
 
         const mapTopSpeed = car.maxSpeed * MAPS[currentMapIndex].speedScale;
         const scrapeRetention = car.barrierContact
@@ -2193,8 +2089,8 @@
         const position = getCarPosition(car);
         const forwardX = Math.cos(position.angle);
         const forwardY = Math.sin(position.angle);
-        const motionForwardX = car.isPlayer ? Math.cos(car.headingAngle) : forwardX;
-        const motionForwardY = car.isPlayer ? Math.sin(car.headingAngle) : forwardY;
+        const motionForwardX = car.isPlayer ? Math.cos(car.motionAngle) : forwardX;
+        const motionForwardY = car.isPlayer ? Math.sin(car.motionAngle) : forwardY;
         return {
           car,
           position,
@@ -3843,7 +3739,7 @@
         if (showKeyboardControls) {
           ctx.fillStyle = "#ffe263";
           ctx.font = "800 9px Trebuchet MS";
-          ctx.fillText("ARROWS DRIVE   SPACE NITRO   R RESTART   P PAUSE", 0, 168);
+          ctx.fillText("LEFT / RIGHT STEER   UP ACCELERATE   SPACE NITRO", 0, 168);
         }
         ctx.restore();
       }
@@ -3904,77 +3800,59 @@
 
       function syncKeyboardInput() {
         const keyboardSteer = (keys.has("ArrowRight") ? 1 : 0) - (keys.has("ArrowLeft") ? 1 : 0);
-        const accelerating = keys.has("ArrowUp") || touchControls.gas;
-        const braking = keys.has("ArrowDown") || touchControls.brake;
-        input.steer = keyboardSteer || touchSteer;
-        input.throttle = (accelerating ? 1 : 0) - (braking ? 1 : 0);
+        const keyboardThrottle = keys.has("ArrowUp") ? 1 : 0;
+        input.steer = joystickPointer === null ? keyboardSteer : joystickInput.steer;
+        input.throttle = joystickPointer === null ? keyboardThrottle : joystickInput.throttle;
         if (nitroPointer === null) input.nitro = keys.has("Space") || keys.has("KeyN");
-        updateSteeringVisual(input.steer);
-        gasPedal.classList.toggle("active", accelerating);
-        brakePedal.classList.toggle("active", braking);
+        updateJoystickVisual(input.steer, input.throttle);
         nitroButton.classList.toggle("active", input.nitro);
       }
 
-      function updateSteeringVisual(value) {
-        const steer = Math.max(-1, Math.min(1, value));
-        steeringSlider.style.setProperty("--wheel-x", `${(steer * 45).toFixed(1)}px`);
-        steeringSlider.style.setProperty("--wheel-turn", `${(steer * 115).toFixed(1)}deg`);
-        steeringSlider.setAttribute("aria-valuenow", String(Math.round(steer * 100)));
+      function updateJoystickVisual(steer, throttle) {
+        driveJoystick.style.setProperty("--stick-x", `${(Math.max(-1, Math.min(1, steer)) * 48).toFixed(1)}px`);
+        driveJoystick.style.setProperty("--stick-y", `${(-Math.max(0, Math.min(1, throttle)) * 48).toFixed(1)}px`);
       }
 
-      function updateTouchSteering(event) {
-        const bounds = steeringSlider.getBoundingClientRect();
-        const center = bounds.left + bounds.width / 2;
-        const travel = bounds.width * 0.35;
-        const rawSteer = (event.clientX - center) / travel;
-        touchSteer = Math.max(-1, Math.min(1, rawSteer));
-        if (Math.abs(touchSteer) < 0.035) touchSteer = 0;
-        updateSteeringVisual(touchSteer);
+      function updateJoystickInput(event) {
+        const bounds = driveJoystick.getBoundingClientRect();
+        const radius = bounds.width * 0.35;
+        let x = (event.clientX - bounds.left - bounds.width / 2) / radius;
+        let y = (event.clientY - bounds.top - bounds.height / 2) / radius;
+        const length = Math.hypot(x, y);
+        if (length > 1) {
+          x /= length;
+          y /= length;
+        }
+        joystickInput.steer = Math.abs(x) < 0.07 ? 0 : x;
+        joystickInput.throttle = Math.max(0, -y);
+        if (joystickInput.throttle < 0.07) joystickInput.throttle = 0;
+        updateJoystickVisual(joystickInput.steer, joystickInput.throttle);
       }
 
-      steeringSlider.addEventListener("pointerdown", (event) => {
-        if (steeringPointer !== null) return;
+      driveJoystick.addEventListener("pointerdown", (event) => {
+        if (joystickPointer !== null) return;
         ensureAudio();
-        steeringPointer = event.pointerId;
-        steeringSlider.setPointerCapture(event.pointerId);
-        steeringSlider.classList.add("dragging");
-        updateTouchSteering(event);
+        joystickPointer = event.pointerId;
+        driveJoystick.setPointerCapture(event.pointerId);
+        driveJoystick.classList.add("dragging");
+        updateJoystickInput(event);
         event.preventDefault();
       });
-      steeringSlider.addEventListener("pointermove", (event) => {
-        if (event.pointerId !== steeringPointer) return;
-        updateTouchSteering(event);
+      driveJoystick.addEventListener("pointermove", (event) => {
+        if (event.pointerId !== joystickPointer) return;
+        updateJoystickInput(event);
         event.preventDefault();
       });
-      const releaseSteering = (event) => {
-        if (event.pointerId !== steeringPointer) return;
-        steeringPointer = null;
-        touchSteer = 0;
-        steeringSlider.classList.remove("dragging");
-        updateSteeringVisual(0);
+      const releaseJoystick = (event) => {
+        if (event.pointerId !== joystickPointer) return;
+        joystickPointer = null;
+        joystickInput.steer = 0;
+        joystickInput.throttle = 0;
+        driveJoystick.classList.remove("dragging");
+        updateJoystickVisual(0, 0);
       };
-      steeringSlider.addEventListener("pointerup", releaseSteering);
-      steeringSlider.addEventListener("pointercancel", releaseSteering);
-
-      function bindHoldControl(button, controlName) {
-        const pointers = new Set();
-        button.addEventListener("pointerdown", (event) => {
-          ensureAudio();
-          pointers.add(event.pointerId);
-          touchControls[controlName] = true;
-          button.setPointerCapture(event.pointerId);
-          event.preventDefault();
-        });
-        const release = (event) => {
-          pointers.delete(event.pointerId);
-          touchControls[controlName] = pointers.size > 0;
-        };
-        button.addEventListener("pointerup", release);
-        button.addEventListener("pointercancel", release);
-      }
-
-      bindHoldControl(gasPedal, "gas");
-      bindHoldControl(brakePedal, "brake");
+      driveJoystick.addEventListener("pointerup", releaseJoystick);
+      driveJoystick.addEventListener("pointercancel", releaseJoystick);
 
       nitroButton.addEventListener("pointerdown", (event) => {
         ensureAudio();
@@ -4002,7 +3880,7 @@
 
       window.addEventListener("resize", resize);
       window.addEventListener("keydown", (event) => {
-        if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Space"].includes(event.code)) {
+        if (["ArrowLeft", "ArrowRight", "ArrowUp", "Space"].includes(event.code)) {
           event.preventDefault();
         }
         ensureAudio();
@@ -4018,11 +3896,11 @@
       window.addEventListener("keyup", (event) => { keys.delete(event.code); });
       window.addEventListener("blur", () => {
         keys.clear();
-        Object.keys(touchControls).forEach((control) => { touchControls[control] = false; });
-        steeringPointer = null;
-        touchSteer = 0;
-        steeringSlider.classList.remove("dragging");
-        updateSteeringVisual(0);
+        joystickPointer = null;
+        joystickInput.steer = 0;
+        joystickInput.throttle = 0;
+        driveJoystick.classList.remove("dragging");
+        updateJoystickVisual(0, 0);
         input.steer = 0;
         input.throttle = 0;
         input.nitro = false;
